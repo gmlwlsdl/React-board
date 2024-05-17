@@ -1,4 +1,8 @@
 .NavBar {
+  display: flex;
+  justify-content: center; /* 플랙스 박스 정렬 */
+  align-items: center;
+
   max-width: 1920px;
   height: 88px;
   padding: 18px 400px 18px 400px;

@@ -48,11 +48,10 @@ function Nav() {
                 </div>
               </div>
             </div>
-
+            if (condition) {}
             <div className="loginMenu">
-              <Link to="/list/create">
+              <Link to="Login">
                 <Button children="로그인" variant="primary" />{' '}
-                {/* 'cihldren' 오타 수정 */}
               </Link>
             </div>
           </div>
