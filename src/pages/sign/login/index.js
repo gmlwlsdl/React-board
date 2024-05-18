@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import '../../../css/globalCss.css';
 import './index.css';
@@ -9,37 +8,44 @@ const Login = () => {
   const [pw, setPw] = useState('');
   const navigate = useNavigate();
 
-  const loginSubmit = async () => {
+  const loginSubmit = async (event) => {
+    event.preventDefault(); // 기본 동작 방지
+
     if (email === '' || pw === '') {
       alert('이메일 또는 비밀번호를 입력해주세요');
       return;
-    } else {
-      try {
-        const res = await fetch('http://localhost:3001/api/loginCheck', {
-          method: 'POST',
-          body: JSON.stringify({ userEmail: email, userPW: pw }),
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const data = await res.json();
+    }
 
-        alert(data);
-        if (res.status === 200) {
-          console.log('ssival');
-          sessionStorage.setItem('email', data.userEmail); // 여기서 userid를 저장합니다.
-          sessionStorage.setItem('pw', data.userPW); // 여기서 role를 저장합니다.
-          sessionStorage.setItem('nickname', data.nickname); // 여기서 role를 저장합니다.
-          navigate('/Done');
+    try {
+      const res = await fetch('http://localhost:3001/api/loginCheck', {
+        method: 'POST',
+        body: JSON.stringify({ userEmail: email, userPW: pw }),
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await res.json();
+      alert(data.message);
+
+      if (res.status === 200) {
+        if (data.userEmail && data.userPW && data.nickname) {
+          sessionStorage.setItem('email', data.userEmail);
+          sessionStorage.setItem('pw', data.userPW);
+          sessionStorage.setItem('nickname', data.nickname);
+          sessionStorage.setItem('login', '1');
+          navigate('/board');
+          window.location.reload('/Nav');
         } else {
-          setEmail('');
-          setPw('');
-          return;
+          console.error('Data 객체에 필요한 속성이 없습니다.');
         }
-      } catch (err) {
-        console.log(err);
+      } else {
+        setEmail('');
+        setPw('');
       }
+    } catch (err) {
+      console.error('Error:', err);
     }
   };
 

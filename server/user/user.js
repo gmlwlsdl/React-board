@@ -2,7 +2,6 @@ const userDB = require('./userDB');
 const bcrypt = require('bcrypt');
 
 const textToHash = async (text) => {
-  // 텍스트 값을 hash로 변환
   const saltRounds = 3;
 
   try {
@@ -20,13 +19,15 @@ exports.signIn = async (req, res) => {
   try {
     const getUser = await userDB.getUser(userEmail);
     if (getUser.length) {
-      res.status(401).json('이미 존재하는 이메일입니다.');
+      res.status(401).json({ message: '이미 존재하는 이메일입니다.' });
       return;
     }
 
     const hash = await textToHash(userPW);
     await userDB.signIn([userEmail, hash, nickname]);
-    res.status(200).json('가입 성공');
+    res.status(200).json({
+      message: '가입 완료',
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -49,7 +50,7 @@ exports.loginCheck = async (req, res) => {
   try {
     const getUser = await userDB.getUser(userEmail);
     if (!getUser.length) {
-      res.status(401).json('존재하지 않는 이메일입니다.');
+      res.status(401).json({ message: '존재하지 않는 이메일입니다.' });
       return;
     }
 
@@ -57,12 +58,17 @@ exports.loginCheck = async (req, res) => {
     const isMatch = await hashCompare(userPW, blobToStr);
 
     if (!isMatch) {
-      res.status(401).json('비밀번호가 일치하지 않습니다.');
+      res.status(401).json({ message: '비밀번호가 일치하지 않습니다.' });
       return;
     }
-    res.status(200).json('로그인 완료');
+    res.status(200).json({
+      message: '로그인 완료',
+      userEmail: getUser[0].email,
+      userPW: getUser[0].pw,
+      nickname: getUser[0].nickname,
+    });
   } catch (err) {
     console.error(err);
-    res.status(500).json(err);
+    res.status(500).json({ message: '서버 에러', error: err });
   }
 };

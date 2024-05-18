@@ -1,104 +1,72 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import '../../../../css/globalCss.css';
 import './index.css';
+import TableRow from './TableRow';
 
 const BoardList = () => {
-  const changeBtn = (e) => {
-    const btns = document.querySelectorAll('.boardbtn');
-    btns.forEach((boardbtn) => {
-      if (e.currentTarget === boardbtn) {
-        boardbtn.classList.add('active');
-      } else {
-        boardbtn.classList.remove('active');
+  const [posts, setPosts] = useState([]);
+  const Navigate = useNavigate();
+
+  useEffect(() => {
+    // 서버로부터 데이터를 가져오는 비동기 함수
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/getPost');
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-    });
-    console.log(e.currentTarget);
+    };
+
+    fetchData();
+  }, []);
+
+  const handleBoard = () => {
+    Navigate('/board');
+  };
+
+  const handleQuest = () => {
+    Navigate('/quest');
   };
 
   return (
-    <div className="parent" style={{ margin: '100px, 388px, 100px, 388px' }}>
-      <div style={{ fontWeight: '700' }}>
-        <p style={{ color: '#EE3918', fontSize: '20px' }}>board</p>
-        <p style={{ color: '#040404', fontSize: '32px' }}>자유게시판</p>
-      </div>
-
-      <div className="boardButton">
-        <div>
-          <Link to="/board">
-            <Button
-              children="자유게시판"
-              variant="primary"
-              className="boardbtn"
-              style={{ backgroundColor: '#ee3918', color: '#eeeeee' }}
-              onClick={changeBtn}
-            />
-          </Link>
+    <div>
+      <div className="parent">
+        <div className="F1000004037">
+          <div className="F1000004356">
+            <div className="F1000004327">
+              <p className="Login">board</p>
+              <p className="Login2">자유게시판</p>
+            </div>
+            <div className="F1000004355">
+              <div className="F1000004353">
+                <div className="F1000004324">
+                  <p className="ButtonText0" onClick={handleBoard}>
+                    자유 게시판
+                  </p>
+                </div>
+                <div className="F10000043532">
+                  <p className="ButtonText1" onClick={handleQuest}>
+                    질문 게시판
+                  </p>
+                </div>
+                <div className="F1000004354">
+                  <p className="ButtonText2" onClick={handleQuest}>
+                    질문 게시판
+                  </p>
+                </div>
+              </div>
+              <div className="F1000004351">
+                <div className="F1000004340">
+                  <div className="F1000004338">게시물 속성 행</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <Link to="/quest">
-            <Button
-              children="질문게시판"
-              variant="primary"
-              className="boardbtn"
-              onClick={changeBtn}
-            />
-          </Link>
-        </div>
-        <div>
-          <Link to="/quest">
-            <Button
-              children="질문 게시판"
-              variant="primary"
-              className="boardbtn"
-              onClick={changeBtn}
-            />
-          </Link>
-        </div>
-      </div>
-
-      <div className="tableContainer">
-        <div className="tableCss">
-          <table>
-            <colgroup>
-              <col width={'5%'} />
-              <col width={'50%'} />
-              <col width={'15%'} />
-              <col width={'15%'} />
-              <col width={'15%'} />
-            </colgroup>
-
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>제목</th>
-                <th>글쓴이</th>
-                <th>작성시간</th>
-                <th>조회수</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>
-                  <Link to={'/board/1'}>공지사항ㅋ</Link>
-                </td>
-                <td>2023.3.3</td>
-                <td>관리자</td>
-                <td>123</td>
-              </tr>
-            </tbody>
-          </table>
-          <p>페이지 넘기기</p>
-        </div>
-      </div>
-
-      <div>
-        <Link to="/list/create">
-          <Button children="Write" variant="primary" />
-        </Link>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Checkbox from './Checkbox';
 import '../../../css/globalCss.css';
 import './index.css';
 
@@ -8,14 +9,20 @@ const Signin = () => {
   const [pw, setPw] = useState('');
   const [re_pw, setRePw] = useState('');
   const [nickname, setName] = useState('');
+  const [agree, setAgree] = useState('');
   const navigate = useNavigate();
 
-  const SigninSubmit = async () => {
+  const SigninSubmit = async (event) => {
+    event.preventDefault(); // 기본 동작 방지
+
     if (email === '' || pw === '') {
       alert('아이디 또는 비밀번호를 입력해주시기 바랍니다');
       return;
     } else if (pw !== re_pw) {
       alert('비밀번호가 일치하지 않습니다.');
+      return;
+    } else if (!agree) {
+      alert('개인정보 처리방침 및 데이터 활용 동의에 체크해주세요.');
       return;
     } else {
       // Fri May 17 2024 20:11:16 GMT+0900 (한국 표준시)
@@ -33,10 +40,12 @@ const Signin = () => {
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
         });
+
         const data = await res.json();
+        alert(data.message);
 
         if (res.status === 200) {
-          navigate('/Login');
+          navigate('/Done');
         } else {
           alert(data.error);
           setEmail('');
@@ -86,7 +95,11 @@ const Signin = () => {
             value={nickname}
             onChange={(e) => setName(e.target.value)}
           ></input>
-          <div> 체크박스 개인정보 처리방침 / 데이터 활용 동의 (필수)</div>
+          <div>
+            <Checkbox checked={agree} onChange={setAgree}>
+              체크박스 개인정보 처리방침 / 데이터 활용 동의 (필수)
+            </Checkbox>
+          </div>
           <button className="sigbtn" type="submit">
             회원가입
           </button>

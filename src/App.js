@@ -10,6 +10,7 @@ import BoardDetail from './pages/board/detail';
 import BoardQuestDetail from './pages/board/detail/index2';
 import Login from './pages/sign/login';
 import Signin from './pages/sign/signIn';
+import SigninDone from './pages/sign/signIn/done';
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/Done" element={<SigninDone />} />
           <Route path="/board" element={<BoardList />} />
           <Route path="/quest" element={<QuestList />} />
-          <Route path="/board/:idx" element={<BoardDetail />} />
-          <Route path="/quest/:idx" element={<BoardQuestDetail />} />
+          <Route path="/api/post/:num" element={<BoardDetail />} />
+          <Route path="/quest/:num" element={<BoardQuestDetail />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,4 +1,4 @@
-const db = require('../server/db.js');
+const db = require('../db');
 
 exports.getUser = (userEmail) => {
   return new Promise((resolve, reject) => {
