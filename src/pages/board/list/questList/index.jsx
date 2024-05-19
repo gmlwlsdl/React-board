@@ -77,7 +77,8 @@ const QuestList = () => {
               <tr>
                 <td>1</td>
                 <td>
-                  <Link to={'/quest/1'}>질문임</Link>
+                  안녕
+                  {/* <Link to={'/quest/1'}>질문임</Link> */}
                 </td>
                 <td>2023.3.3</td>
                 <td>관리자</td>

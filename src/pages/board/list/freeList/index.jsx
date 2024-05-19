@@ -9,20 +9,20 @@ const BoardList = () => {
   // const [posts, setPosts] = useState([]);
   const Navigate = useNavigate();
 
-  useEffect(() => {
-    // 서버로부터 데이터를 가져오는 비동기 함수
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/api/getPost');
-        const data = await response.json();
-        // setPosts(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  // useEffect(() => {
+  //   // 서버로부터 데이터를 가져오는 비동기 함수
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:3001/api/getPost');
+  //       const data = await response.json();
+  //       setPosts(data);
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   const handleBoard = () => {
     Navigate('/board');

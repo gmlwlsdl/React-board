@@ -91,7 +91,15 @@ const Login = () => {
               <p> | </p>
               <p>비밀번호 찾기 </p>
               <p> | </p>
-              <p onClick={moveSignin}>회원가입</p>
+              <p
+                onClick={moveSignin}
+                onKeyDown={moveSignin}
+                tabIndex={0}
+                role="button"
+                aria-label="회원가입"
+              >
+                회원가입
+              </p>
             </div>
           </div>
         </form>

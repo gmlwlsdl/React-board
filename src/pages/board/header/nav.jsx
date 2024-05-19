@@ -64,6 +64,11 @@ function Nav() {
               <p
                 className="ButtonText3"
                 onClick={handleLogin}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleLogin();
+                  }
+                }}
                 role="button"
                 tabIndex={0}
               >

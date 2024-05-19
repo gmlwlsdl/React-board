@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Checkbox({ children, disabled, checked, onChange }) {
+function Checkbox({ children, checked, onChange, disabled }) {
   return (
     <label>
       <input
         type="checkbox"
-        disabled={disabled}
         checked={checked}
         onChange={({ target: { checked } }) => onChange(checked)}
+        disabled={disabled}
       />
       {children}
     </label>
@@ -17,9 +17,9 @@ function Checkbox({ children, disabled, checked, onChange }) {
 
 Checkbox.propTypes = {
   children: PropTypes.node.isRequired,
-  disabled: PropTypes.bool,
   checked: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default Checkbox;

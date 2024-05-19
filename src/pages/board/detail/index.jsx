@@ -6,7 +6,6 @@ const BoardDetail = () => {
   const { num } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // error 상태 추가
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -19,7 +18,6 @@ const BoardDetail = () => {
         setPost(data);
       } catch (error) {
         console.error('Error fetching post:', error);
-        setError(error);
       } finally {
         setLoading(false);
       }
