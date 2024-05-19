@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import '../../../../css/globalCss.css';
 import './index.css';
-import TableRow from './TableRow';
+// import TableRow from './TableRow';
 
 const BoardList = () => {
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
   const Navigate = useNavigate();
 
   useEffect(() => {
