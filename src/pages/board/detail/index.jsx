@@ -5,8 +5,8 @@ import { FaChevronLeft } from 'react-icons/fa';
 const BoardDetail = () => {
   const { num } = useParams();
   const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true); // loading 상태 추가
-  const [, setError] = useState(null); // error 상태 추가
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // error 상태 추가
 
   useEffect(() => {
     const fetchPost = async () => {
