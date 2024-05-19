@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import Button from 'react-bootstrap/Button';
 import '../../../../css/globalCss.css';
 import './index.css';
@@ -15,7 +15,7 @@ const BoardList = () => {
       try {
         const response = await fetch('http://localhost:3001/api/getPost');
         const data = await response.json();
-        setPosts(data);
+        // setPosts(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -44,17 +44,47 @@ const BoardList = () => {
             <div className="F1000004355">
               <div className="F1000004353">
                 <div className="F1000004324">
-                  <p className="ButtonText0" onClick={handleBoard}>
+                  <p
+                    className="ButtonText0"
+                    onClick={handleBoard}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleBoard();
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                  >
                     자유 게시판
                   </p>
                 </div>
                 <div className="F10000043532">
-                  <p className="ButtonText1" onClick={handleQuest}>
+                  <p
+                    className="ButtonText1"
+                    onClick={handleBoard}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleQuest();
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                  >
                     질문 게시판
                   </p>
                 </div>
                 <div className="F1000004354">
-                  <p className="ButtonText2" onClick={handleQuest}>
+                  <p
+                    className="ButtonText2"
+                    onClick={handleBoard}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleQuest();
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                  >
                     질문 게시판
                   </p>
                 </div>

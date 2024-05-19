@@ -13,20 +13,18 @@ import SigninDone from './pages/sign/signIn/done';
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Nav />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/Done" element={<SigninDone />} />
-          <Route path="/board" element={<BoardList />} />
-          <Route path="/quest" element={<QuestList />} />
-          <Route path="/api/post/:num" element={<BoardDetail />} />
-          <Route path="/quest/:num" element={<BoardQuestDetail />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/Done" element={<SigninDone />} />
+        <Route path="/board" element={<BoardList />} />
+        <Route path="/quest" element={<QuestList />} />
+        <Route path="/api/post/:num" element={<BoardDetail />} />
+        <Route path="/quest/:num" element={<BoardQuestDetail />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -61,22 +61,24 @@ const Login = () => {
             <div className="login">로그인</div>
             <div>
               <div>
-                <textarea
+                <input
+                  type="email"
                   name="email"
                   id="email"
                   placeholder="이메일 주소"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                ></textarea>
+                />
               </div>
               <div>
-                <textarea
+                <input
+                  type="password"
                   name="pw"
                   id="pw"
                   placeholder="비밀번호 입력"
                   value={pw}
                   onChange={(e) => setPw(e.target.value)}
-                ></textarea>
+                />
               </div>
             </div>
             <div>

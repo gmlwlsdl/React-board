@@ -8,10 +8,10 @@ function Nav() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const sessionName = window.sessionStorage.getItem('nickname');
+    const storedSessionName = window.sessionStorage.getItem('nickname');
 
-    if (sessionName) {
-      setSessionName(sessionName);
+    if (storedSessionName) {
+      setSessionName(storedSessionName);
     }
   }, []);
 
@@ -46,12 +46,27 @@ function Nav() {
             {sessionName ? (
               <div className="logout">
                 {sessionName} 님
-                <p className="ButtonText3" onClick={handleLogout}>
+                <p
+                  className="ButtonText3"
+                  onClick={handleLogout}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleLogout();
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                >
                   로그아웃
                 </p>
               </div>
             ) : (
-              <p className="ButtonText3" onClick={handleLogin}>
+              <p
+                className="ButtonText3"
+                onClick={handleLogin}
+                role="button"
+                tabIndex={0}
+              >
                 로그인
               </p>
             )}
@@ -62,14 +77,34 @@ function Nav() {
           <div className="F1000003053">
             <div className="GNB_Button">
               <div className="Content">
-                <p className="ButtonText" onClick={handleBoard}>
+                <p
+                  className="ButtonText"
+                  onClick={handleBoard}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleBoard();
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                >
                   게시판
                 </p>
               </div>
             </div>
             <div className="GNB_Button2">
               <div className="Content2">
-                <p className="ButtonText2" onClick={handleDash}>
+                <p
+                  className="ButtonText2"
+                  onClick={handleDash}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      handleDash();
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                >
                   대시보드
                 </p>
               </div>

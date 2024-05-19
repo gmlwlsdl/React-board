@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import '../../../../css/globalCss.css';
-import '../questList/index.css';
+import './index.css'; // 스타일 파일을 불러옵니다.
 
 const QuestList = () => {
   const changeBtn = (e) => {
@@ -27,33 +26,28 @@ const QuestList = () => {
       <div className="boardButton">
         <div>
           <Link to="/board">
-            <Button
-              children="자유게시판"
-              variant="primary"
-              className="boardbtn"
-              onClick={changeBtn}
-            />
+            <Button variant="primary" className="boardbtn" onClick={changeBtn}>
+              자유게시판
+            </Button>
           </Link>
         </div>
         <div>
           <Link to="/quest">
             <Button
-              children="질문게시판"
               variant="primary"
               className="boardbtn"
               style={{ backgroundColor: '#ee3918', color: '#eeeeee' }}
               onClick={changeBtn}
-            />
+            >
+              질문게시판
+            </Button>
           </Link>
         </div>
         <div>
           <Link to="/quest">
-            <Button
-              children="질문 게시판"
-              variant="primary"
-              className="boardbtn"
-              onClick={changeBtn}
-            />
+            <Button variant="primary" className="boardbtn" onClick={changeBtn}>
+              질문 게시판
+            </Button>
           </Link>
         </div>
       </div>
@@ -97,7 +91,7 @@ const QuestList = () => {
 
       <div>
         <Link to="/list/create">
-          <Button children="Write" variant="primary" />
+          <Button variant="primary">Write</Button>
         </Link>
       </div>
     </div>

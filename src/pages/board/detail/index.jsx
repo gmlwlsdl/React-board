@@ -6,7 +6,7 @@ const BoardDetail = () => {
   const { num } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true); // loading 상태 추가
-  const [error, setError] = useState(null); // error 상태 추가
+  const [, setError] = useState(null); // error 상태 추가
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -41,45 +41,30 @@ const BoardDetail = () => {
   }
 
   return (
-    <div>
-      <div className="parent">
-        <div className="F1000004037">
-          <div className="F1000004369">
-            <div className="F1000004361">
-              <div className="F1000004368">
-                <div className="F1000004357">
-                  <div className="chevron">
-                    <FaChevronLeft className="Vector" />
-                  </div>
-
-                  <p className="Posttitle">{post.title}</p>
+    <div className="parent">
+      <div className="F1000004037">
+        <div className="F1000004369">
+          <div className="F1000004361">
+            <div className="F1000004368">
+              <div className="F1000004357">
+                <div className="chevron">
+                  <FaChevronLeft className="Vector" />
                 </div>
-                <div className="F816639">
-                  <p>{post.writer}</p>
-                  <p>{post.created_at}</p>
-                  <p>{post.views}</p>
-                </div>
-                <div></div>
+                <p className="Posttitle">{post.title}</p>
               </div>
-              <div className="contents">{post.contents}</div>
-              <div className="F1000004372">첨부 파일</div>
-              <div className="F1000004359">
-                <div className="F1000004353">#유머</div>
-                <div className="F1000004358">#유익함</div>
-                <div className="F1000004359">#해시태그</div>
-                <div className="F1000004360">#유머</div>
+              <div className="F816639">
+                <p>{post.writer}</p>
+                <p>{post.created_at}</p>
+                <p>{post.views}</p>
               </div>
-              <div className="F1000004363">
-                사각형
-                <div className="F1000004325">댓글작성버튼</div>
-              </div>
-              <br></br>
-              <div className="F1000004366">
-                <div className="F1000004371">닉네임, 댓글 내용, 작성시간</div>
-              </div>
-              <div className="F1000004367">
-                <div className="F1000004371">닉네임, 댓글 내용, 작성시간</div>
-              </div>
+              {/* .. */}
+              <div />
+            </div>
+            <div className="contents">{post.contents}</div>
+            <div className="F1000004372">첨부 파일</div>
+            <div className="F1000004359">
+              <div className="F1000004353">#유머</div>
+              <div className="F1000004358">#해시태그</div>
             </div>
           </div>
         </div>
